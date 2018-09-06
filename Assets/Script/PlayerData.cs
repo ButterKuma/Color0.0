@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //player Data Struct Class
-public class playerData
+public class PlayerData
 {
 
     private int ID;
@@ -20,10 +20,21 @@ public class playerData
     private List<int> Inventory = new List<int>(); //아이템 Inventory
     private List<int> S_Position = new List<int>(); //마지막 저장 위치 0 = x, 1 = y, 2 = z, 
 
-    public playerData(string name, int id) //Strat
+    public PlayerData(string name, int id) //Strat
     {
         ID = id;
         Name = name;
+        Level = 1;
+        Health = 100;
+        Damage = 10;
+        Defence = 15;
+        Total_EXP = 800;
+        P_EXP = 0;
+    }
+    public PlayerData(int id) //Data Load
+    {
+        ID = id;
+        Name = null;
         Level = 1;
         Health = 100;
         Damage = 10;

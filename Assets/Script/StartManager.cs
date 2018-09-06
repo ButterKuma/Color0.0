@@ -1,27 +1,51 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using LitJson;
+using System.IO;
 
 public class StartManager : MonoBehaviour {
-	// Use this for initialization
-	void Start () {
+    public Text Temp;
 
+    // Use this for initialization
+    void Awake() {
+        Temp = GameObject.Find("Text").GetComponent<Text>();
     }
-    public void GameStart() {
-        int id = 0; // 임시값 0
-        string name = null;
-
+    private void Start()
+    {
+      
+    }
+    private void Update()
+    {
+        
+    }
+    public void OnClickStartButton() {
         Debug.Log("게임을 새로 생성합니다.");
-
-        playerData data = new playerData(name,id);
     }
-    public void GameEnd() {
+    public void OnClickLoadButton() {
+        StartCoroutine(LoadCo());
+        SceneManager.LoadScene(1);
+
+    }
+    public void OnClickEndButton() {
+
         Debug.Log("게임을 종료합니다.");
         Application.Quit();
     }
 
-    public void LoadGame() {
+    IEnumerator LoadCo()
+    {
+        string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/Data/PlayerData.json");
 
+        JsonData PlayerList = JsonMapper.ToObject(Jsonstring);
+        ExchangText(Jsonstring);
+
+        yield return null;
+    }
+
+    public void ExchangText(string text) {
+        Temp.text = text;
     }
 }

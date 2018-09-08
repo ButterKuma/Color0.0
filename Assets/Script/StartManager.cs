@@ -23,8 +23,9 @@ public class StartManager : MonoBehaviour{
         
     }
     public void OnClickStartButton() {
-        StartCoroutine(StartCo());
-        
+        Debug.Log("게임을 새로 생성합니다.");
+        PanelSetName.SetActive(true);
+        panelRectTransform.SetAsFirstSibling();
     }
     public void OnClickLoadButton() {
         StartCoroutine(LoadCo());
@@ -46,19 +47,12 @@ public class StartManager : MonoBehaviour{
 
         yield return null;
     }
-    IEnumerator StartCo() {
-        
-        Debug.Log("게임을 새로 생성합니다.");
-        PanelSetName.SetActive(true);
-        panelRectTransform.SetAsFirstSibling();
-
-        yield return null;
-    }
 
     public void ExchangText(string text) {
         Temp.text = text;
     }
     public void OnClickCancle() {
+        PanelSetName.SetActive(false);
         panelRectTransform.SetAsLastSibling();
     }
     public void OnClickOk() {

@@ -43,4 +43,9 @@ public class PlayerData
         P_EXP = 0;
     }
 
+    public PlayerData PlayerDataLoad() {
+
+
+        return null;
+    }
 }

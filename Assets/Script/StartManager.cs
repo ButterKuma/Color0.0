@@ -6,33 +6,42 @@ using System.Collections.Generic;
 using LitJson;
 using System.IO;
 
-public class StartManager : MonoBehaviour{
-    public Text Temp;
+public class StartManager : MonoBehaviour
+{
     public RectTransform panelRectTransform;
+    public RectTransform ScrollVeiwTransform;
     public InputField SetName;
     public GameObject PanelSetName;
+    public GameObject ScrollView;
+    public Button Item;
+    public Text Laod_Name;
+    public Text Laod_Level;
 
     // Use this for initialization
-    void Awake() {
-        Temp = GameObject.Find("Text").GetComponent<Text>();
+    void Awake()
+    {
+        ScrollView.SetActive(false);
         SetName = GameObject.Find("InputField").GetComponent<InputField>();
         PanelSetName.SetActive(false);
     }
     private void Update()
     {
-        
+
     }
-    public void OnClickStartButton() {
+    public void OnClickStartButton()
+    {
         Debug.Log("게임을 새로 생성합니다.");
         PanelSetName.SetActive(true);
         panelRectTransform.SetAsFirstSibling();
     }
-    public void OnClickLoadButton() {
+    public void OnClickLoadButton()
+    {
         StartCoroutine(LoadCo());
-        SceneManager.LoadScene(1);
-
+        ScrollView.SetActive(true);
+        ScrollVeiwTransform.SetAsFirstSibling();
     }
-    public void OnClickEndButton() {
+    public void OnClickEndButton()
+    {
 
         Debug.Log("게임을 종료합니다.");
         Application.Quit();
@@ -43,19 +52,16 @@ public class StartManager : MonoBehaviour{
         string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/Data/PlayerData.json");
 
         JsonData PlayerList = JsonMapper.ToObject(Jsonstring);
-        ExchangText(Jsonstring);
-
         yield return null;
     }
-
-    public void ExchangText(string text) {
-        Temp.text = text;
-    }
-    public void OnClickCancle() {
+    public void OnClickCancle()
+    {
         PanelSetName.SetActive(false);
         panelRectTransform.SetAsLastSibling();
     }
-    public void OnClickOk() {
+    public void OnClickOk()
+    {
+
         Debug.Log(SetName.text);
     }
 }

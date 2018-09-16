@@ -37,7 +37,7 @@ public class StartManager : MonoBehaviour
     }
     public void OnClickLoadButton()
     {
-        StartCoroutine(LoadCo(1));
+        StartCoroutine(LoadCo());
         ScrollView.SetActive(true);
         ScrollVeiwTransform.SetAsLastSibling();
 
@@ -49,7 +49,7 @@ public class StartManager : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator LoadCo(int select)
+    IEnumerator LoadCo()
     {
         string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/Data/PlayerData.json");
 
@@ -67,16 +67,17 @@ public class StartManager : MonoBehaviour
     }
     public void OnClickOk()
     {
-        int id = 2;
+        int id = ((int)Random.Range(100.0f,999.0f)*2)/5;
+        Debug.Log(SetName.text + id);
         InitializeData(SetName.text, id);
+        SceneManager.LoadScene(1);
     }
-    public void onClickItemView() {
-        Debug.Log("OK");
+    public void OnClickItemView() {
+        SceneManager.LoadScene(1);
     }
 
     public void InitializeData(string name, int id)
     {
-        Debug.Log(id + name); //체크용
         PlayerDataManagement.Singleton().NowPlayerData.ID = id;
         PlayerDataManagement.Singleton().NowPlayerData.Name = name;
         PlayerDataManagement.Singleton().NowPlayerData.Level = 1;
@@ -89,7 +90,6 @@ public class StartManager : MonoBehaviour
         PlayerDataManagement.Singleton().NowPlayerData.DoneQuest.Clear();
         PlayerDataManagement.Singleton().NowPlayerData.FinishQuest.Clear();
         PlayerDataManagement.Singleton().NowPlayerData.Inventory.Clear();
-        PlayerDataManagement.Singleton().NowPlayerData.S_Position.Clear();
+        PlayerDataManagement.Singleton().PlayerDataSave();
     }
-
 }

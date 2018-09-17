@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerManagement : MonoBehaviour {
-
+public class PlayerManagement {
     public int ID;
     public string Name;
     public int Level;
@@ -13,17 +12,19 @@ public class PlayerManagement : MonoBehaviour {
     public int Total_EXP;
     public int P_EXP;
     public int Money;
-    public List<int> DoneQuest = new List<int>(); //진행 중 퀘스트
-    public List<int> FinishQuest = new List<int>(); //완료한 퀘스트
-    public List<int> Inventory = new List<int>(); //아이템 Inventory
-    public List<int> S_Position = new List<int>(); //마지막 저장 위치 0 = x, 1 = y, 2 = z, 
-                                                    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public string S_pos; //마지막 저장 위치 0 = x, 1 = y, 2 = z
+
+
+    public PlayerManagement(int id, string name, int level, int health, int damage, int defence, int tExp, int pExp, int money,string sPos) {
+       ID =id;
+        Name =name;
+        Level=level;
+        Health=health;
+        Damage=damage;
+        Defence=defence;
+        Total_EXP=tExp;
+        P_EXP=pExp;
+        Money=money;
+        S_pos=sPos; //마지막 저장 위치 0 = x, 1 = y, 2 = z
+}
 }

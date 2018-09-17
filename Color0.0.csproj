@@ -84,10 +84,8 @@
     <Compile Include="Assets\Script\Attack.cs" />
     <Compile Include="Assets\Script\CameraControll.cs" />
     <Compile Include="Assets\Script\EnemyManagement.cs" />
-    <Compile Include="Assets\Script\NameSet.cs" />
     <Compile Include="Assets\Script\PlayerDataManagement.cs" />
     <Compile Include="Assets\Script\PlayerManagement.cs" />
-    <Compile Include="Assets\Script\PlayerManager.cs" />
     <Compile Include="Assets\Script\PlayerMove.cs" />
     <Compile Include="Assets\Script\Respawn.cs" />
     <Compile Include="Assets\Script\StartManager.cs" />

@@ -1,27 +1,20 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using LitJson;
 using System.Collections;
-using UnityEngine.SceneManagement;
-using System.Collections.Generic;
-using LitJson;
 using System.IO;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class StartManager : MonoBehaviour
 {
     public RectTransform panelRectTransform;
-    public RectTransform ScrollVeiwTransform;
     public InputField SetName;
     public GameObject PanelSetName;
-    public GameObject ScrollView;
-    public Button Item;
-    public Text Laod_Name;
-    public Text Laod_Level;
 
     // Use this for initialization
     void Awake()
     {
         SetName = GameObject.Find("InputField").GetComponent<InputField>();
-        ScrollView.SetActive(false);
         PanelSetName.SetActive(false);
     }
     private void Update()
@@ -33,14 +26,11 @@ public class StartManager : MonoBehaviour
         Debug.Log("게임을 새로 생성합니다.");
         PanelSetName.SetActive(true);
         panelRectTransform.SetAsFirstSibling();
-
     }
     public void OnClickLoadButton()
     {
-        StartCoroutine(LoadCo());
-        ScrollView.SetActive(true);
-        ScrollVeiwTransform.SetAsLastSibling();
-
+        SceneManager.LoadScene(1);
+        PlayerDataManagement.Singleton().PlayerDataLoad();
     }
     public void OnClickEndButton()
     {
@@ -49,21 +39,11 @@ public class StartManager : MonoBehaviour
         Application.Quit();
     }
 
-    IEnumerator LoadCo()
-    {
-        string Jsonstring = File.ReadAllText(Application.dataPath + "/Resources/Data/PlayerData.json");
 
-        JsonData PlayerList = JsonMapper.ToObject(Jsonstring);
-        Debug.Log(Jsonstring);
-
-        yield return null;
-    }
     public void OnClickCancle()
     {
         PanelSetName.SetActive(false);
-        ScrollView.SetActive(false);
         panelRectTransform.SetAsLastSibling();
-        ScrollVeiwTransform.SetAsLastSibling();
     }
     public void OnClickOk()
     {
@@ -87,9 +67,10 @@ public class StartManager : MonoBehaviour
         PlayerDataManagement.Singleton().NowPlayerData.Total_EXP = 400;
         PlayerDataManagement.Singleton().NowPlayerData.P_EXP = 0;
         PlayerDataManagement.Singleton().NowPlayerData.Money = 0;
-        PlayerDataManagement.Singleton().NowPlayerData.DoneQuest.Clear();
-        PlayerDataManagement.Singleton().NowPlayerData.FinishQuest.Clear();
-        PlayerDataManagement.Singleton().NowPlayerData.Inventory.Clear();
+        PlayerDataManagement.Singleton().NowPlayerData.S_pos[0] = 100.0f; //x축
+        PlayerDataManagement.Singleton().NowPlayerData.S_pos[1] = 0.5f; //y축
+        PlayerDataManagement.Singleton().NowPlayerData.S_pos[2] =70.0f; //z축
         PlayerDataManagement.Singleton().PlayerDataSave();
+        PlayerDataManagement.Singleton().PlayerDataLoad();
     }
 }

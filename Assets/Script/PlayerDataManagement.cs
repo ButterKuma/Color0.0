@@ -21,66 +21,90 @@ public class PlayerDataManagement : MonoBehaviour {
 
         return SingletonInstance;
     }
-    public PlayerData NowPlayerData = new PlayerData();
+    public Player NowPlayerData = new Player();
     
+
     void Start()
     {
         
     }
 
     void Update() {
-        Debug.Log(NowPlayerData.Name);
-        Debug.Log(NowPlayerData.ID);
-        Debug.Log(NowPlayerData.Level);
-        Debug.Log(NowPlayerData.Health);
-        Debug.Log(NowPlayerData.Damage);
-        Debug.Log(NowPlayerData.Defence);
-        Debug.Log(NowPlayerData.Total_EXP);
-        Debug.Log(NowPlayerData.P_EXP);
-        Debug.Log(NowPlayerData.Money);
-        Debug.Log(NowPlayerData.DoneQuest);
-        Debug.Log(NowPlayerData.FinishQuest);
-        Debug.Log(NowPlayerData.Inventory);
 
     }
     public void PlayerDataSave() {
         Debug.Log("저장");
         SaveCo();
     }
+    public void PlayerDataLoad()
+    {
+        StartCoroutine(LoadPlayerData());
+    }
     private void SaveCo() {
+        string spos = Singleton().NowPlayerData.S_pos[0] + "/" + Singleton().NowPlayerData.S_pos[1] + "/" + Singleton().NowPlayerData.S_pos[2];
+        string inventory = "0/1";
+        string DoneQuest = "0/1";
+        string FinishQuest = "0/1";
 
-        JsonData Player = JsonMapper.ToJson(Singleton().NowPlayerData);
+        PlayerManagement User = new PlayerManagement(Singleton().NowPlayerData.ID, Singleton().NowPlayerData.Name, Singleton().NowPlayerData.Level, Singleton().NowPlayerData.Health, Singleton().NowPlayerData.Damage, Singleton().NowPlayerData.Defence, Singleton().NowPlayerData.Total_EXP, Singleton().NowPlayerData.P_EXP, Singleton().NowPlayerData.Money,spos);
+        JsonData Player = JsonMapper.ToJson(User);
 
         File.WriteAllText(Application.dataPath  + "/Resources/Data/PlayerData.json", Player.ToString());
     }
     IEnumerator LoadPlayerData() {
-        string JsonString = File.ReadAllText(Application.dataPath + "/ Resources / Data / PlayerData.json");
-        Debug.Log("DataLoad");
+        string JsonString = File.ReadAllText(Application.dataPath + "/Resources/Data/PlayerData.json");
 
         JsonData PlayerData = JsonMapper.ToObject(JsonString);
 
-        GetPlayerInfo(PlayerData);
+        CreatePlyaer(PlayerData);
         yield return null;
     }
-    private void GetPlayerInfo(JsonData name) {
+
+    public GameObject PlayerPrefab;
+    private void CreatePlyaer(JsonData name) {
+        Debug.Log(name["ID"].ToString());
+
+        PlayerManagement User = new PlayerManagement(int.Parse(name["ID"].ToString()), name["Name"].ToString(),
+                                                                                           int.Parse(name["Level"].ToString()), int.Parse(name["Health"].ToString()), 
+                                                                                           int.Parse(name["Damage"].ToString()), int.Parse(name["Defence"].ToString()),
+                                                                                           int.Parse(name["Total_EXP"].ToString()),int.Parse(name["P_EXP"].ToString()),
+                                                                                           int.Parse(name["Money"].ToString()), name["spos"].ToString());
+        string[] spos = User.S_pos.Split('/');
+
+        Singleton().NowPlayerData.ID = User.ID;
+        Singleton().NowPlayerData.Name = User.Name;
+        Singleton().NowPlayerData.Level = User.Level;
+        Singleton().NowPlayerData.Damage = User.Damage;
+        Singleton().NowPlayerData.Defence = User.Defence;
+        Singleton().NowPlayerData.Total_EXP = User.Total_EXP;
+        Singleton().NowPlayerData.P_EXP = User.P_EXP;
+        Singleton().NowPlayerData.Money = User.Money;
+        Singleton().NowPlayerData.S_pos[0] = int.Parse(spos[0]);
+        Singleton().NowPlayerData.S_pos[1] = int.Parse(spos[1]);
+        Singleton().NowPlayerData.S_pos[2] = int.Parse(spos[2]);
+
+
+
+        Vector3 TmpPos = new Vector3(float.Parse(spos[0]), float.Parse(spos[1]), float.Parse(spos[2])); // x, y, z
+
+        GameObject Player = Instantiate(PlayerPrefab, TmpPos, Quaternion.identity);
+        Debug.Log("Create");
     }
 }
 
 
 //player Data Struct Class
 [System.Serializable]
-public class PlayerData
+public class Player
 {
-public int ID;
-public string Name;
-public int Level;
-public int Health;
-public int Damage;
-public int Defence;
-public int Total_EXP;
-public int P_EXP;
-public int Money;
-public List<int> DoneQuest = new List<int>(); //진행 중 퀘스트
-public List<int> FinishQuest = new List<int>(); //완료한 퀘스트
-public List<int> Inventory = new List<int>(); //아이템 Inventory
+    public int ID;
+    public string Name;
+    public int Level;
+    public int Health;
+    public int Damage;
+    public int Defence;
+    public int Total_EXP;
+    public int P_EXP;
+    public int Money;
+    public float[] S_pos = new float[3];
 }

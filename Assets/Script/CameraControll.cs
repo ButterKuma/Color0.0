@@ -12,7 +12,7 @@ public class CameraControll : MonoBehaviour
 
     private Transform tr;
 
-    private void Start()
+    private void Awake()
     {
         tr = GetComponent<Transform>();
     }

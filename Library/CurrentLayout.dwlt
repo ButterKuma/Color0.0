@@ -20,7 +20,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 6}
-  m_MinSize: {x: 950, y: 300}
+  m_MinSize: {x: 950, y: 392}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -114,8 +114,8 @@ MonoBehaviour:
     y: 564
     width: 1026
     height: 367
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 102, y: 121}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 13}
@@ -324,18 +324,18 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 0
     m_Folders:
-    - Assets
+    - Assets/Resources
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets
+  - Assets/Resources
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\github\Color0.0
   m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: ca240000
-    m_LastClickedID: 9418
+    m_SelectedIDs: 58280000
+    m_LastClickedID: 10328
     m_ExpandedIDs: 00000000ca2400005828000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -389,8 +389,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 70800000
-    m_LastClickedInstanceID: 32880
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c623000044270000
     m_RenameOverlay:
@@ -482,18 +482,18 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 0260feff8a6afeff1480feff4682feff1895feff1e9efeff40acfeff04b8feffeac5fefffcd3feff5cd9feff2efafeff0208fffff01affffde21ffffca36ffff5c3fffff8659ffffb664ffffec69fffff46dffff2886ffffe6fbfffff4ffffff0000000064290000bc2900001e2a0000d43e00002c3f00008e3f0000ce4f000030500000205a0000285a0000005b0000327100009471000004820000
+    m_ExpandedIDs: e6fbfffff4ffffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: PlayerCamera
-      m_OriginalName: PlayerCamera
+      m_Name: New Game Object
+      m_OriginalName: New Game Object
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 32880
+      m_UserData: -4632
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 0
@@ -532,14 +532,14 @@ MonoBehaviour:
     width: 746
     height: 543
   m_SceneLighting: 1
-  lastFramingTime: 5246.234525196559
+  lastFramingTime: 836.6197041299315
   m_2DMode: 0
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 100, y: 1.5, z: 67.5}
+    m_Target: {x: 0, y: 0, z: 0}
     speed: 2
-    m_Value: {x: 100, y: 1.5, z: 67.5}
+    m_Value: {x: 0, y: 0, z: 0}
   m_RenderMode: 0
   m_ValidateTrueMetals: 0
   m_SceneViewState:
@@ -566,9 +566,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0.0024802294, y: -0.8343675, z: 0.0037549522, w: 0.5511902}
   m_Size:
-    m_Target: 2.1875112
+    m_Target: 22
     speed: 2
-    m_Value: 2.1875112
+    m_Value: 22
   m_Ortho:
     m_Target: 1
     speed: 2

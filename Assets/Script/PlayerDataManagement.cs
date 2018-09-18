@@ -61,24 +61,21 @@ public class PlayerDataManagement : MonoBehaviour {
     }
 
     public GameObject PlayerPrefab;
+
     private void CreatePlyaer(JsonData name) {
         Debug.Log(name["ID"].ToString());
 
-        PlayerManagement User = new PlayerManagement(int.Parse(name["ID"].ToString()), name["Name"].ToString(),
-                                                                                           int.Parse(name["Level"].ToString()), int.Parse(name["Health"].ToString()), 
-                                                                                           int.Parse(name["Damage"].ToString()), int.Parse(name["Defence"].ToString()),
-                                                                                           int.Parse(name["Total_EXP"].ToString()),int.Parse(name["P_EXP"].ToString()),
-                                                                                           int.Parse(name["Money"].ToString()), name["spos"].ToString());
-        string[] spos = User.S_pos.Split('/');
+        string[] spos = name["spos"].ToString().Split('/');
 
-        Singleton().NowPlayerData.ID = User.ID;
-        Singleton().NowPlayerData.Name = User.Name;
-        Singleton().NowPlayerData.Level = User.Level;
-        Singleton().NowPlayerData.Damage = User.Damage;
-        Singleton().NowPlayerData.Defence = User.Defence;
-        Singleton().NowPlayerData.Total_EXP = User.Total_EXP;
-        Singleton().NowPlayerData.P_EXP = User.P_EXP;
-        Singleton().NowPlayerData.Money = User.Money;
+        Singleton().NowPlayerData.ID = int.Parse(name["ID"].ToString());
+        Singleton().NowPlayerData.Name = name["Name"].ToString();
+        Singleton().NowPlayerData.Level = int.Parse(name["Level"].ToString());
+        Singleton().NowPlayerData.Damage = int.Parse(name["Health"].ToString());
+        Singleton().NowPlayerData.Damage = int.Parse(name["Damage"].ToString());
+        Singleton().NowPlayerData.Defence = int.Parse(name["Defence"].ToString());
+        Singleton().NowPlayerData.Total_EXP = int.Parse(name["Total_EXP"].ToString());
+        Singleton().NowPlayerData.P_EXP = int.Parse(name["P_EXP"].ToString());
+        Singleton().NowPlayerData.Money = int.Parse(name["Money"].ToString());
         Singleton().NowPlayerData.S_pos[0] = int.Parse(spos[0]);
         Singleton().NowPlayerData.S_pos[1] = int.Parse(spos[1]);
         Singleton().NowPlayerData.S_pos[2] = int.Parse(spos[2]);

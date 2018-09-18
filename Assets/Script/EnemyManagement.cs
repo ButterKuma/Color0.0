@@ -12,7 +12,7 @@ public class EnemyManagement : MonoBehaviour {
     public float HP = 100.0f;
 
     // Use this for initialization
-    void Start()
+    void Startr()
     {
         StartCoroutine("ChangeMovement");
     }

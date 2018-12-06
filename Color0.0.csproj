@@ -81,15 +81,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Attack.cs" />
-    <Compile Include="Assets\Script\CameraControll.cs" />
-    <Compile Include="Assets\Script\EnemyManagement.cs" />
-    <Compile Include="Assets\Script\PlayerDataManagement.cs" />
-    <Compile Include="Assets\Script\PlayerManagement.cs" />
-    <Compile Include="Assets\Script\PlayerMove.cs" />
-    <Compile Include="Assets\Script\Respawn.cs" />
-    <Compile Include="Assets\Script\StartManager.cs" />
-    <Compile Include="Assets\Script\UIManger.cs" />
+    <Compile Include="Assets\Resources\Script\Attack.cs" />
+    <Compile Include="Assets\Resources\Script\CameraControll.cs" />
+    <Compile Include="Assets\Resources\Script\EnemyController.cs" />
+    <Compile Include="Assets\Resources\Script\PlayerController.cs" />
+    <Compile Include="Assets\Resources\Script\PlayerDataManagement.cs" />
+    <Compile Include="Assets\Resources\Script\Respawn.cs" />
+    <Compile Include="Assets\Resources\Script\StartManager.cs" />
+    <Compile Include="Assets\Resources\Script\UIManger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

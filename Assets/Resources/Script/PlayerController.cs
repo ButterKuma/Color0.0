@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour {
+public class PlayerController : MonoBehaviour {
     public float speed; //이동 속도
     public float spinSpeed; //회전 속도
     private float hori; //수평
@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour {
 
     public GameObject bullet;
     public Transform pos;
+    public GameObject obj;
 
 
     private void Awake()
@@ -78,5 +79,17 @@ public class PlayerMove : MonoBehaviour {
     {
         GetComponent<Rigidbody>().AddForce(velocity);
 
+    }
+     void OnCollisionEnter(Collision col) {
+        
+       int HP= PlayerDataManagement.Singleton().NowPlayerData.Health;
+        int Critical = Random.Range(3, 9);
+        if (col.gameObject.CompareTag("Enemy")) {
+            PlayerDataManagement.Singleton().NowPlayerData.Health = HP - (PlayerDataManagement.Singleton().NowPlayerData.Damage + (PlayerDataManagement.Singleton().NowPlayerData.Health / Critical));
+            if (PlayerDataManagement.Singleton().NowPlayerData.Health < 0) {
+                PlayerDataManagement.Singleton().life = false;
+                obj.SetActive(PlayerDataManagement.Singleton().life);
+            }
+        }       
     }
 }
